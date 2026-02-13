@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { supabase } from "@/lib/supabaseClient"
+import { useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function BookmarkForm({ user }: any) {
-  const [title, setTitle] = useState("")
-  const [url, setUrl] = useState("")
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault()
-    if (!title || !url) return
+    e.preventDefault();
+    if (!title || !url) return;
 
     await supabase.from("bookmarks").insert({
       title,
       url,
       user_id: user.id,
-    })
+    });
 
-    setTitle("")
-    setUrl("")
-  }
+    setTitle("");
+    setUrl("");
+  };
 
   return (
     <form
@@ -51,5 +51,5 @@ export default function BookmarkForm({ user }: any) {
         Add Bookmark
       </button>
     </form>
-  )
+  );
 }
