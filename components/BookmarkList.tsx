@@ -1,56 +1,52 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { supabase } from "@/lib/supabaseClient"
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function BookmarkList() {
-  const [bookmarks, setBookmarks] = useState<any[]>([])
+  const [bookmarks, setBookmarks] = useState<any[]>([]);
 
   const fetchBookmarks = async () => {
     const { data } = await supabase
       .from("bookmarks")
       .select("*")
-      .order("created_at", { ascending: false })
+      .order("created_at", { ascending: false });
 
-    setBookmarks(data || [])
-  }
+    setBookmarks(data || []);
+  };
 
   useEffect(() => {
-    fetchBookmarks()
+    fetchBookmarks();
 
     const channel = supabase
       .channel("realtime-bookmarks")
       .on(
         "postgres_changes",
         { event: "*", schema: "public", table: "bookmarks" },
-        fetchBookmarks
+        fetchBookmarks,
       )
-      .subscribe()
+      .subscribe();
 
     return () => {
-      supabase.removeChannel(channel)
-    }
-  }, [])
+      supabase.removeChannel(channel);
+    };
+  }, []);
 
   const deleteBookmark = async (id: string) => {
     // Optimistic UI update
-    setBookmarks((prev) => prev.filter((b) => b.id !== id))
+    setBookmarks((prev) => prev.filter((b) => b.id !== id));
 
-    await supabase.from("bookmarks").delete().eq("id", id)
-  }
+    await supabase.from("bookmarks").delete().eq("id", id);
+  };
 
   if (bookmarks.length === 0) {
-    return (
-      <p className="text-center text-slate-400 mt-6">
-        No bookmarks yet
-      </p>
-    )
+    return <p className="text-center text-slate-400 mt-6">No bookmarks yet</p>;
   }
 
   return (
     <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
       {bookmarks.map((b) => {
-        const domain = new URL(b.url).hostname
+        const domain = new URL(b.url).hostname;
 
         return (
           <div
@@ -83,8 +79,8 @@ export default function BookmarkList() {
               {b.title}
             </a>
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
