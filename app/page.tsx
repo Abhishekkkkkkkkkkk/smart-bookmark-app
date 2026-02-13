@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { supabase } from "@/lib/supabaseClient"
-import AuthButton from "@/components/AuthButton"
-import BookmarkForm from "@/components/BookmarkForm"
-import BookmarkList from "@/components/BookmarkList"
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
+import AuthButton from "@/components/AuthButton";
+import BookmarkForm from "@/components/BookmarkForm";
+import BookmarkList from "@/components/BookmarkList";
 
 export default function Home() {
-  const [session, setSession] = useState<any>(null)
+  const [session, setSession] = useState<any>(null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session)
-    })
+      setSession(data.session);
+    });
 
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_, session) => setSession(session)
-    )
+    const { data: listener } = supabase.auth.onAuthStateChange((_, session) =>
+      setSession(session),
+    );
 
-    return () => listener.subscription.unsubscribe()
-  }, [])
+    return () => listener.subscription.unsubscribe();
+  }, []);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4">
@@ -57,5 +57,5 @@ export default function Home() {
         </p>
       </div>
     </main>
-  )
+  );
 }
