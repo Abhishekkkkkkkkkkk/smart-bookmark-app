@@ -6,8 +6,8 @@ A modern, real-time bookmark manager built with **Next.js (App Router)** and **S
 
 ## 🚀 Live Demo
 
-👉 **Live URL:** https://your-vercel-url.vercel.app  
-👉 **GitHub Repo:** https://github.com/your-username/smart-bookmark-app
+👉 **Live URL:** https://sba-abhishek.vercel.app/ 
+👉 **GitHub Repo:** https://github.com/Abhishekkkkkkkkkkk/smart-bookmark-app
 
 > You can log in using your own Google account to test the app.
 
@@ -20,7 +20,7 @@ A modern, real-time bookmark manager built with **Next.js (App Router)** and **S
 - ➕ Add bookmarks (URL + title)
 - ❌ Delete bookmarks
 - ⚡ Real-time sync across tabs
-- 🎨 Modern UI (Purple, Blue, Grey, White, Red theme)
+- 🎨 Modern UI
 - 📱 Fully responsive
 - 🚀 Deployed on Vercel
 
@@ -104,41 +104,6 @@ Supabase Dashboard → Database → Realtime → Enable for bookmarks table
 
 ---
 
-## 🧠 Problems Faced & Solutions
-
-### Google OAuth Error
-**Issue:** Unsupported provider  
-**Fix:** Enabled Google provider and correct redirect URL
-
----
-
-### Bookmarks Not Visible
-**Issue:** Empty results due to RLS  
-**Fix:** Filter queries using user_id
-
----
-
-### UI Not Updating
-**Issue:** Needed refresh after add/delete  
-**Fix:** Implemented optimistic UI + realtime
-
----
-
-### Runtime Error (undefined id)
-**Issue:** Component rendered before auth  
-**Fix:** Added guards and dependency checks
-
----
-
-## 🎨 UI Design
-
-- Purple–Blue gradient for branding
-- White glass cards
-- Grey text for readability
-- Red for destructive actions
-
----
-
 ## 🧪 Run Locally
 
 ```bash
@@ -151,16 +116,6 @@ npm run dev
 ## 📦 Deployment
 
 Deployed on Vercel with environment variables configured.
-
----
-
-## 📌 Future Enhancements
-
-- Search & filters
-- Tags
-- Toast notifications
-- Dark/Light mode
-- Drag & drop reordering
 
 ---
 
