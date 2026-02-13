@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { supabase } from "@/lib/supabaseClient"
+import { supabase } from "@/lib/supabaseClient";
 
 export default function AuthButton({ session }: any) {
   const handleLogin = async () => {
-    await supabase.auth.signInWithOAuth({ provider: "google" })
-  }
+    await supabase.auth.signInWithOAuth({ provider: "google" });
+  };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut()
-  }
+    await supabase.auth.signOut();
+  };
 
   return session ? (
     <button
@@ -27,5 +27,5 @@ export default function AuthButton({ session }: any) {
     >
       Login with Google
     </button>
-  )
+  );
 }
